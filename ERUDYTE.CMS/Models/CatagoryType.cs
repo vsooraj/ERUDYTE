@@ -1,6 +1,5 @@
-﻿namespace Erudyte.ApplicationCore.Entities
+﻿namespace Erudyte.CMS.Models
 {
-
     public class CatagoryType : BaseEntity
     {
         public string Type { get; set; }
