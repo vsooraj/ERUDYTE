@@ -12,10 +12,13 @@ namespace Erudyte.CMS.Controllers
         {
             _categoryTypeRepository = categoryTypeRepository;
         }
+        // GET: /<controller>/
         public IActionResult Index()
         {
             ViewBag.Title = "Dashboard Page";
             return View();
         }
     }
+
+
 }
