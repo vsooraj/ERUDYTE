@@ -1,4 +1,4 @@
-﻿using Erudyte.CMS.Models.Interfaces;
+﻿using Erudyte.CMS.Data.Interfaces;
 using Erudyte.CMS.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,8 +1,10 @@
-﻿using Erudyte.CMS.Models.Interfaces;
-using Erudyte.CMS.Models.Repositories;
+﻿using Erudyte.CMS.Data;
+using Erudyte.CMS.Data.Interfaces;
+using Erudyte.CMS.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -12,19 +14,19 @@ namespace ERUDYTE.CMS
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<ErudyteContext>(options =>
-            //options.UseSqlServer(IConfiguration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ErudyteContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddTransient<ICategoryTypeRepository, MockCatagoryTypeRepository>();
+            services.AddTransient<ICategoryTypeRepository, MockCategoryTypeRepository>();
             //services.AddTransient<ICategoryTypeRepository, CatagoryTypeRepository>();
             services.AddMvc();
         }
