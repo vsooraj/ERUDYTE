@@ -17,6 +17,9 @@ namespace Erudyte.CMS.Data
                     new CategoryType() { Type = "Test Category" }
                 );
             }
+            //var defaultUser = new IdentityUser { UserName = "admin@erudyte.com", Email = "admin@erudyte.com" };
+
+            //userManager.CreateAsync(defaultUser, "Pass@word1");
             context.SaveChanges();
         }
 

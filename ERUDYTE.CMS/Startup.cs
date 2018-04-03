@@ -4,11 +4,13 @@ using Erudyte.CMS.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+
 
 namespace ERUDYTE.CMS
 {
@@ -25,6 +27,11 @@ namespace ERUDYTE.CMS
         {
             services.AddDbContext<ErudyteContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<ErudyteContext>();
+            //.AddDefaultTokenProviders();
+
 
             services.AddTransient<ICategoryTypeRepository, MockCategoryTypeRepository>();
             //services.AddTransient<ICategoryTypeRepository, CatagoryTypeRepository>();
@@ -54,6 +61,7 @@ namespace ERUDYTE.CMS
                     RequestPath = new PathString("/vendor")
                 });
             }
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

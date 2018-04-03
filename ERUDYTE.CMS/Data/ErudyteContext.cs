@@ -1,11 +1,13 @@
 ﻿
 using Erudyte.CMS.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Erudyte.CMS.Data
 {
-    public class ErudyteContext : DbContext
+
+    public class ErudyteContext : IdentityDbContext<IdentityUser>
     {
         public ErudyteContext(DbContextOptions<ErudyteContext> options) : base(options)
 
@@ -18,31 +20,31 @@ namespace Erudyte.CMS.Data
 
 
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        //protected override void OnModelCreating(ModelBuilder builder)
 
-        {
+        //{
 
-            builder.Entity<CategoryType>(ConfigureCategoryType);
+        //    builder.Entity<CategoryType>(ConfigureCategoryType);
 
-        }
-
-
-        private void ConfigureCategoryType(EntityTypeBuilder<CategoryType> builder)
-
-        {
-
-            builder.ToTable("CategoryType");
+        //}
 
 
-            builder.HasKey(ci => ci.Id);
+        //private void ConfigureCategoryType(EntityTypeBuilder<CategoryType> builder)
+
+        //{
+
+        //    builder.ToTable("CategoryType");
 
 
-            builder.Property(cb => cb.Type)
+        //    builder.HasKey(ci => ci.Id);
 
-                .IsRequired()
 
-                .HasMaxLength(100);
+        //    builder.Property(cb => cb.Type)
 
-        }
+        //        .IsRequired()
+
+        //        .HasMaxLength(100);
+
+        //}
     }
 }

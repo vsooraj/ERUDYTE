@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+<!DOCTYPE html>
+
+@inject SignInManager<IdentityUser> SignInManager;
+@inject UserManager<IdentityUser> UserManager;
 
 <html>
 <head>
@@ -13,12 +17,32 @@
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/Home/Index">Erudyte</a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="/Home/Index">Sign out</a>
-            </li>
-        </ul>
+        <input class="form-control form-control-dark w-75" type="text" placeholder="Search" aria-label="Search">
+
+        @*@if (SignInManager.IsSignedIn(User))
+            {*@
+        <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
+              method="post">
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap"><a href="#">Welcome, @UserManager.GetUserName(User)</a></li>
+                <li class="nav-item text-nowrap">
+                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                </li>
+            </ul>
+        </form>
+        @*}
+            else
+            {
+                <ul class="navbar-nav px-3">
+                    <li class="nav-item text-nowrap">
+                        <a id="registerLink" asp-controller="Account" asp-action="Register">Register</a>
+                    </li>
+                    <li class="nav-item text-nowrap">
+                        <a id="loginLink" asp-controller="Account" asp-action="Login">Log in</a>
+                    </li>
+                </ul>
+            }*@
+
     </nav>
 
     <div class="container-fluid">

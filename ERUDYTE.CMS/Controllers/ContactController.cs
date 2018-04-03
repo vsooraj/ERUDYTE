@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Erudyte.CMS.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Erudyte.CMS.Controllers
 {
-    [Route("Contact")]
+
     public class ContactController : Controller
     {
         public IActionResult Index()
         {
-            ViewBag.Title = "Contact Page";
-            return View();
+            var contactViewModel = new ContactViewModel();
+            ViewBag.Title = "Feedback Page";
+            contactViewModel.Title = "Feedback Page";
+            return View(contactViewModel);
         }
     }
 }
