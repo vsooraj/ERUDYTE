@@ -9,8 +9,8 @@ namespace Erudyte.CMS.Controllers
         public IActionResult Index()
         {
             var contactViewModel = new ContactViewModel();
-            ViewBag.Title = "Feedback Page";
-            contactViewModel.Title = "Feedback Page";
+            ViewBag.Title = "Feedback";
+            contactViewModel.Title = "Feedback";
             return View(contactViewModel);
         }
     }
